@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NVIDIA GPU H100 Card Latency Info</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100vh;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .line-container {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 5%;
+            box-sizing: border-box;
+        }
+
+        .line-wrapper {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 50px;
+        }
+
+        .line {
+            position: relative;
+            width: 10px;
+            height: 500px;
+            background-color: white;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .circle {
+            position: absolute;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            animation: oscillate 4s linear infinite;
+        }
+
+        .label {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .speed-factor {
+            margin-bottom: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        @keyframes oscillate {
+
+            0%,
+            100% {
+                top: -20px;
+            }
+
+            50% {
+                top: 480px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="line-container">
+        <div class="line-wrapper">
+            <div class="speed-factor">79x</div>
+            <div class="line">
+                <div class="circle" style="animation-duration: 77s;"></div>
+            </div>
+            <div class="label">Inter-Node (Ethernet)<br>35 microseconds</div>
+        </div>
+        <div class="line-wrapper">
+            <div class="speed-factor">11.41x</div>
+            <div class="line">
+                <div class="circle" style="animation-duration: 11.41s;"></div>
+            </div>
+            <div class="label">Inter-GPU (NVLink 4.0)<br>4 microseconds</div>
+        </div>
+        <div class="line-wrapper">
+            <div class="speed-factor">4.28x</div>
+            <div class="line">
+                <div class="circle" style="animation-duration: 4.28s;"></div>
+            </div>
+            <div class="label">Host-to-GPU (PCIe 5.0)<br>1.5 microseconds</div>
+        </div>
+        <div class="line-wrapper">
+            <div class="speed-factor">2.14x</div>
+            <div class="line">
+                <div class="circle" style="animation-duration: 2.14s;"></div>
+            </div>
+            <div class="label">Host-to-GPU (NVLink 4.0)<br>0.75 microseconds</div>
+        </div>
+        <div class="line-wrapper">
+            <div class="speed-factor">1.00x</div>
+            <div class="line">
+                <div class="circle" style="animation-duration: 1s;"></div>
+            </div>
+            <div class="label">Global Memory (HBM3)<br>350 nanoseconds</div>
+        </div>
+        <div class="line-wrapper">
+            <div class="speed-factor">0.35x</div>
+            <div class="line">
+                <div class="circle" style="animation-duration: 0.35s;"></div>
+            </div>
+            <div class="label">L2 Cache (Shared)<br>125 nanoseconds</div>
+        </div>
+        <div class="line-wrapper">
+            <div class="speed-factor">.04x</div>
+            <div class="line">
+                <div class="circle" style="animation-duration: 0.04s;"></div>
+            </div>
+            <div class="label">L1 Cache (Per SM)<br>15 nanoseconds</div>
+        </div>
+        <div class="line-wrapper">
+            <div class="speed-factor">.04x</div>
+            <div class="line">
+                <div class="circle" style="animation-duration: 0.04s"></div>
+            </div>
+            <div class="label">Shared Memory (SM-Level)<br>15 nanoseconds</div>
+        </div>
+        <div class="line-wrapper">
+            <div class="speed-factor">.01x</div>
+            <div class="line">
+                <div class="circle" style="animation-duration: 0.01s;"></div>
+            </div>
+            <div class="label">FP32 FMA on CUDA Core<br>3.4 nanoseconds</div>
+        </div>
+        <div class="line-wrapper">
+            <div class="speed-factor">.002x</div>
+            <div class="line">
+                <div class="circle" style="animation-duration: 0.002s;"></div>
+            </div>
+            <div class="label">FP32 FMA on Tensor Core<br>1 nanosecond</div>
+        </div>
+    </div>
+</body>
+
+</html>
